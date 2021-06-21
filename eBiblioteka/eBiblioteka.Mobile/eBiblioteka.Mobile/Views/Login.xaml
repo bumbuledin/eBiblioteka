@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eBiblioteka.Mobile.Views.Login"
+             xmlns:vm="clr-namespace:eBiblioteka.Mobile.ViewModels"
+             BackgroundColor="#2e8b57">
+
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="30,0,30,60">
+            <Image Source="whitelogo.png" Margin="0,0,0,40"></Image>
+            <Label Text="Korisničko Ime" TextColor="White" Padding="20,0,20,0" FontSize="16"></Label>
+            <Entry x:Name="KorisnickoIme" Text="{Binding KorisnickoIme}" Margin="20,0,20,0"></Entry>
+            <Label Text="Lozinka" TextColor="White" Margin="20,0,20,0" FontSize="16"></Label>
+            <Entry x:Name="Lozinka" Text="{Binding Lozinka}" IsPassword="True" Margin="20,0,20,0"></Entry>
+            <Button Command="{Binding LoginCommand}" Text="PRIJAVI SE" BackgroundColor="White" TextColor="Black" BorderColor="White" Margin="20,20,20,0" FontAttributes="Bold" FontSize="16"></Button>
+            <Label IsVisible="{Binding IsBusy}" Text="Pričekajte..." Margin="20,0,20,0" TextColor="White"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eBiblioteka.Mobile.Views.ProfilPage"    
+             xmlns:vm="clr-namespace:eBiblioteka.Mobile.ViewModels"
+             xmlns:converters="clr-namespace:eBiblioteka.Mobile.Converters" 
+             xmlns:image="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             Title="{Binding Title}">
+
+
+    <ContentPage.BindingContext>
+        <vm:ProfilViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+
+            <AbsoluteLayout HeightRequest="130" BackgroundColor="SeaGreen" HorizontalOptions="FillAndExpand" Margin="15">
+                <StackLayout Padding="6" Orientation="Horizontal"  AbsoluteLayout.LayoutBounds="0.5, -0.5, -1, -1" AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <image:CircleImage Source="{Binding Clan.Slika, Converter={StaticResource imgConv}}" HeightRequest="180" WidthRequest="180" HorizontalOptions="Center" Aspect="AspectFill" BorderColor="White" BorderThickness="4"></image:CircleImage>
+                </StackLayout>
+                <ImageButton Command="{Binding AddNewPhoto}" AbsoluteLayout.LayoutBounds="0.64, 2.25, -1, -1" AbsoluteLayout.LayoutFlags="PositionProportional" Source="photoadd.png" WidthRequest="60" HeightRequest="60" CornerRadius="30" > </ImageButton>
+            </AbsoluteLayout>
+
+            <Label Text="{Binding Clan.ImePrezime}" FontSize="18" FontAttributes="Bold" Margin="0,90,0,0" HorizontalOptions="CenterAndExpand"></Label>
+            <BoxView HeightRequest="1" BackgroundColor="#b0b0b0" Margin="0,30,0,0"></BoxView>
+            <StackLayout Orientation="Horizontal" Padding="5">
+                <Image Source="username.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Margin="10,0,10,0"></Image>
+                <Label Text="{Binding Clan.KorisnickoIme}" VerticalOptions="Center" FontSize="16"></Label>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="#b0b0b0" Margin="0,0,0,0"></BoxView>
+            <StackLayout Orientation="Horizontal"  Padding="5">
+                <Image Source="email.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Margin="10,0,10,0"></Image>
+                <Label Text="{Binding Clan.Email}" VerticalOptions="Center" FontSize="16"></Label>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="#b0b0b0" Margin="0,0,0,0"></BoxView>
+            <StackLayout Orientation="Horizontal" Padding="5">
+                <Image Source="phone.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Margin="10,0,10,0"></Image>
+                <Label Text="{Binding Clan.Telefon}" VerticalOptions="Center" FontSize="16"></Label>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="#b0b0b0" Margin="0,0,0,0"></BoxView>
+            <StackLayout Orientation="Horizontal" Padding="5">
+                <Image Source="birth.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Margin="10,0,10,0"></Image>
+                <Label Text="{Binding Clan.DatumRodjenja, StringFormat='{0:dd/MM/yyyy}'}" VerticalOptions="Center" FontSize="16"></Label>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="#b0b0b0" Margin="0,0,0,0"></BoxView>
+            <StackLayout Orientation="Horizontal" Padding="5">
+                <Image Source="address.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Margin="10,0,10,0"></Image>
+                <Label Text="{Binding Clan.Adresa, StringFormat='{0:dd/MM/yyyy}'}" VerticalOptions="Center" FontSize="16"></Label>
+                <Label Text="," VerticalOptions="Center"  FontSize="16"></Label>
+                <Label Text="{Binding Clan.Grad.Naziv}" VerticalOptions="Center" FontSize="16"></Label>
+            </StackLayout>
+            <BoxView HeightRequest="1" BackgroundColor="#b0b0b0" Margin="0,0,0,0"></BoxView>
+
+            <Grid Margin="15,25,15,15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                
+                <Button Text="Izmjena ličnih podataka" Grid.Row="0" Grid.Column="0" Margin="0,0,5,0" Padding="0,10" Command="{Binding IzmjenaPodatakaCommand}"></Button>
+                <Button Text="Izmjena lozinke" Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" Padding="0,10" Command="{Binding IzmjenaLozinkeCommand}" ></Button>
+
+
+            </Grid>
+            <StackLayout Orientation="Horizontal">
+                
+            </StackLayout>
+
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

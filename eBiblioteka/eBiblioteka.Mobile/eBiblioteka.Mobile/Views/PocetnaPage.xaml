@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eBiblioteka.Mobile.Views.PocetnaPage"     
+             xmlns:vm="clr-namespace:eBiblioteka.Mobile.ViewModels"
+             xmlns:converters="clr-namespace:eBiblioteka.Mobile.Converters">
+
+
+    <ContentPage.BindingContext>
+        <vm:PocetnaViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout BackgroundColor="SeaGreen" Padding="5">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="50,0,50,20">
+                    <Image Source="whitelogo.png"></Image>
+                </StackLayout>
+                <Label Text="Dobro došli u eBiblioteku!" FontSize="22" TextColor="White" HorizontalTextAlignment="Center" FontFamily="Century Gothic" Margin="0,0,0,30"></Label>
+            </StackLayout>
+
+            <Grid Margin="10,30,10,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+
+                <StackLayout BackgroundColor="#ed8309" Orientation="Vertical" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center">
+                    <Label Text="{Binding AktivnaZaduzenja}" HorizontalTextAlignment="Center" FontSize="30" Margin="0,5" TextColor="White"></Label>
+                    <BoxView HeightRequest="2" BackgroundColor="White" Margin="5,0"></BoxView>
+                    <Label Text="AKTIVNA ZADUŽENJA" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="White" FontSize="12"  Margin="10,5,10,10"></Label>
+                </StackLayout>
+                
+                <StackLayout BackgroundColor="#12bbc7" Orientation="Vertical" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center">
+                    <Label Text="{Binding AktivneRezervacije}" HorizontalTextAlignment="Center" FontSize="30" Margin="0,5" TextColor="White"></Label>
+                    <BoxView HeightRequest="2" BackgroundColor="White" Margin="5,0"></BoxView>
+                    <Label Text="AKTIVNE REZERVACIJE" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="White" FontSize="12" Margin="10,5,10,10"></Label>
+                </StackLayout>
+
+                <StackLayout BackgroundColor="#e32942" Orientation="Vertical" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center">
+                    <Label Text="{Binding UkupnoZaduzenja}" HorizontalTextAlignment="Center" FontSize="30" Margin="0,5" TextColor="White"></Label>
+                    <BoxView HeightRequest="2" BackgroundColor="White" Margin="5,0"></BoxView>
+                    <Label Text="UKUPNO ZADUŽENJA" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="White" FontSize="12" Margin="10,5,10,10"></Label>
+                </StackLayout>
+
+            </Grid>
+
+            <StackLayout Margin="20,0">
+                <Label Text="Preporučeno za vas (sistem preporuke) :" FontSize="16"></Label>
+            </StackLayout>
+
+            <StackLayout BackgroundColor="IndianRed" Margin="20,10" IsVisible="{Binding IsVisible}">
+                
+                <Label HorizontalTextAlignment="Center" Padding="0,25" Text="Lista vaših zaduženja je prazna. Nakon što budete kreirali prvo zaduženje  algoritam će Vam automatski preporučiti knjige!"  TextColor="White"></Label>
+            </StackLayout>
+            
+            <ListView ItemsSource="{Binding PreporukaList}"  SeparatorVisibility="None" ItemTapped="ListView_ItemTapped" SelectionMode="None" HasUnevenRows="False" Margin="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame  Padding="15,15,15,15" BackgroundColor="#ededed" BorderColor="#c7c7c7" Margin="15,12,15,12" CornerRadius="20">
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout VerticalOptions="Center">
+                                        <Image Source="{Binding Slika, Converter={StaticResource imgConv}}" WidthRequest="100" HeightRequest="100"></Image>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" Margin="10,10" VerticalOptions="Center">
+                                        <Label Text="{Binding Naziv}" FontSize="16" FontFamily="Vedrana" FontAttributes="Bold" TextColor="SeaGreen"></Label>
+                                        <Label Text="{Binding ImePrezime, StringFormat='Autor: {0:}'}" FontSize="14" FontFamily="Vedrana"></Label>
+                                        <Label Text="{Binding GodinaIzdavanja, StringFormat='Godina izdavnja: {0:}'}" FontSize="14" FontFamily="Vedrana"></Label>
+                                        <Label Text="{Binding BrojStranica, StringFormat='Broj stranica: {0:}'}" FontSize="14" FontFamily="Vedrana"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

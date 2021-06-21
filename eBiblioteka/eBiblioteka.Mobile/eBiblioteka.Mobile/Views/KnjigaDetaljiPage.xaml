@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eBiblioteka.Mobile.Views.KnjigaDetaljiPage"
+             xmlns:vm="clr-namespace:eBiblioteka.Mobile.ViewModels"
+             xmlns:converters="clr-namespace:eBiblioteka.Mobile.Converters"
+             Title="{Binding Knjiga.Naziv}">
+
+    <ContentPage.BindingContext>
+        <vm:KnjigaDetaljiViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+            <converters:InverseBindingBoolConverter x:Key="reverseConverter"></converters:InverseBindingBoolConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Margin="0,30,0,10">
+                    <Image Source="{Binding Knjiga.Slika, Converter={StaticResource imgConv}}" WidthRequest="180" HeightRequest="180"></Image>
+                </StackLayout>
+                <StackLayout Margin="20,10,20,0">
+                    <Button Padding="8" Command="{Binding RezervacijaCommand}" IsEnabled="{Binding IsBusy, Converter={StaticResource reverseConverter}}" Text="+ Rezerviši knjigu"></Button>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="20,10,20,10">
+                    <Label Text="Naziv:" FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Knjiga.Naziv}"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="20,0,20,10">
+                    <Label Text="Autor:" FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Knjiga.ImePrezime}"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="20,0,20,10">
+                    <Label Text="Žanr:" FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Knjiga.Kategorija.Naziv}"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="20,0,20,10">
+                    <Label Text="Godina izdavanja:" FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Knjiga.GodinaIzdavanja}"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="20,0,20,30">
+                    <Label Text="Broj stranica:" FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Knjiga.BrojStranica}"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
+                    <Label Text="O knjizi:" FontAttributes="Bold"></Label>
+                </StackLayout>
+                <StackLayout Margin="20,0,20,0" HorizontalOptions="FillAndExpand">
+                    <Label Text="{Binding Knjiga.Opis}" LineHeight="1.5"></Label>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

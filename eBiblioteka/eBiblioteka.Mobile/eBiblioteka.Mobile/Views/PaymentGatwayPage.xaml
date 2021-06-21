@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eBiblioteka.Mobile.Views.PaymentGatwayPage"
+             xmlns:vm="clr-namespace:eBiblioteka.Mobile.ViewModels"
+             Title="{Binding Title}">
+    
+    <ContentPage.BindingContext>
+        <vm:PaymentGatwayViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+
+            <StackLayout Margin="15,10,15,50">
+                <Label Text="Za potrebe testiranja se mogu koristiti sljedeće kartice:"></Label>
+                <Label Text="Broj kartice (4242 - 4242 - 4242 - 4242), Datum (10/2021), CVC (123)"></Label>
+                <Label Text="Broj kartice (5555 - 5555 - 5555 - 4444), Datum (10/2021), CVC (123)"></Label>
+
+            </StackLayout>
+            <Grid Padding="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <Label x:Name="CardNumber_Label" Text="Broj kartice:"  Grid.Column="0" Grid.Row="0" VerticalOptions="Center" ></Label>
+                <Entry x:Name="CardNumber" Placeholder="Broj kartice" Text="{Binding CreditCardModel.Number}" Grid.Column="1" Grid.Row="0" WidthRequest="500" TextChanged="CardNumber_TextChanged" Unfocused="CardNumber_Unfocused"></Entry>
+                <Label x:Name="ErrorLabel_CardNumber" Grid.Row="1" Grid.Column="1"  TextColor="Red" FontSize="12" />
+
+            </Grid>
+            <Grid Padding="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <Label x:Name="Date_Label" Text="Datum isteka:" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" ></Label>
+                <Entry x:Name="Month" Placeholder="Mjesec" Text="{Binding CreditCardModel.ExpMonth}" Grid.Row="0" Grid.Column="1" WidthRequest="500" Margin="0,0,7,0" TextChanged="Month_TextChanged" Unfocused="Month_Unfocused"></Entry>
+                <Entry x:Name="Year" Placeholder="Godina" Text="{Binding CreditCardModel.ExpYear}" Grid.Row="0" Grid.Column="2" WidthRequest="500" Margin="7,0,0,0" TextChanged="Year_TextChanged" Unfocused="Year_Unfocused"></Entry>
+                <Label x:Name="ErrorLabel_Month" Grid.Row="1" Grid.Column="1"  TextColor="Red" FontSize="12" />
+                <Label x:Name="ErrorLabel_Year" Grid.Row="1" Grid.Column="2"  TextColor="Red" FontSize="12" Margin="7,0,0,0" />
+
+
+            </Grid>
+            <Grid Padding="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <Label Text="CVC:"  Grid.Row="0" Grid.Column="0" VerticalOptions="Center" ></Label>
+                <Entry x:Name="CVC" Placeholder="CVC" Text="{Binding CreditCardModel.Cvc}" TextChanged="CVC_TextChanged" Unfocused="CVC_Unfocused" Grid.Row="0" Grid.Column="1" WidthRequest="500"></Entry>
+                <Label x:Name="ErrorLabel_CVC" Grid.Row="1" Grid.Column="1"  TextColor="Red" FontSize="12" Margin="7,0,0,0" />
+
+
+            </Grid>
+            
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Padding="15">
+                <Button  Command="{Binding SubmitCommand}" IsEnabled="{Binding IsButtonEnabled}" BorderRadius="0"  Text="UPLATI"  HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"/>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
