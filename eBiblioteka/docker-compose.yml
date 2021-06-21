@@ -18,7 +18,8 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:eBiblioteka=Server=ebiblioteka-sql,1433;Database=170057;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+     - ConnectionStrings:eBiblioteka=Server=ebiblioteka-sql,1433;Database=170057_eBiblioteka;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+     
     ports:
       - 36195:80
     networks:

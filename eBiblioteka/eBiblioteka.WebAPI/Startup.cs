@@ -36,7 +36,7 @@ namespace eBiblioteka.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<eBibliotekaContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("Test")));
+               options.UseSqlServer(Configuration.GetConnectionString("eBiblioteka")));
 
             services.AddMvc(x => x.Filters.Add<ErrorFilter>());
             services.AddControllers();
