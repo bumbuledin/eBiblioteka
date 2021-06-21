@@ -38,6 +38,7 @@ namespace eBiblioteka.WinUI.Forms.Static
             this.txtKorisnickoIme = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtWait = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -59,7 +60,7 @@ namespace eBiblioteka.WinUI.Forms.Static
             // btnLogin
             // 
             this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnLogin.BackColor = System.Drawing.Color.Black;
+            this.btnLogin.BackColor = System.Drawing.Color.SeaGreen;
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnLogin.ForeColor = System.Drawing.Color.WhiteSmoke;
@@ -140,12 +141,25 @@ namespace eBiblioteka.WinUI.Forms.Static
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // txtWait
+            // 
+            this.txtWait.AutoSize = true;
+            this.txtWait.BackColor = System.Drawing.Color.SeaGreen;
+            this.txtWait.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtWait.ForeColor = System.Drawing.Color.White;
+            this.txtWait.Location = new System.Drawing.Point(526, 611);
+            this.txtWait.Name = "txtWait";
+            this.txtWait.Size = new System.Drawing.Size(131, 25);
+            this.txtWait.TabIndex = 38;
+            this.txtWait.Text = "Pričekajte ...";
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(1484, 811);
+            this.Controls.Add(this.txtWait);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmLogin";
@@ -157,6 +171,7 @@ namespace eBiblioteka.WinUI.Forms.Static
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -169,5 +184,6 @@ namespace eBiblioteka.WinUI.Forms.Static
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelLozinka;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.Label txtWait;
     }
 }

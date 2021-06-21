@@ -41,15 +41,16 @@ namespace eBiblioteka.WebAPI
             services.AddMvc(x => x.Filters.Add<ErrorFilter>());
             services.AddControllers();
 
-            services.AddSwaggerGen();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "eBiblioteka API", Version = "v1" });
 
                 c.AddSecurityDefinition("BasicAuthentication", new OpenApiSecurityScheme
                 {
+                    Name = "Authorization",
                     Type = SecuritySchemeType.Http,
-                    Scheme = "basic"
+                    Scheme = "basic",
+                    In = ParameterLocation.Header
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -105,13 +106,14 @@ namespace eBiblioteka.WebAPI
 
             app.UseSwagger();
             app.UseAuthentication();
+            app.UseAuthorization();
+
 
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "eBiblioteka API");
             });
 
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

@@ -15,11 +15,10 @@ namespace eBiblioteka.WinUI.Forms.Static
     public partial class frmLogin : Form
     {
         APIService _apiService = new APIService("Uposlenik");
-        private bool isClicked = false;
         public frmLogin()
         {
             InitializeComponent();
-            isClicked = false;
+            txtWait.Visible = false;
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -29,48 +28,51 @@ namespace eBiblioteka.WinUI.Forms.Static
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            if(isClicked == false)
+            if (this.ValidateChildren() && ProvjeraValidnostiPolja() == true)
             {
-                if (this.ValidateChildren() && ProvjeraValidnostiPolja() == true)
+                btnLogin.Enabled = false;
+                txtWait.Visible = true;
+                try
                 {
-                    try
+                    APIService.Username = txtKorisnickoIme.Text;
+                    APIService.Password = txtPassword.Text;
+
+                    AuthenticationRequest request = new AuthenticationRequest
                     {
-                        APIService.Username = txtKorisnickoIme.Text;
-                        APIService.Password = txtPassword.Text;
+                        KorisnickoIme = txtKorisnickoIme.Text,
+                        Password = txtPassword.Text
+                    };
 
-                        AuthenticationRequest request = new AuthenticationRequest
-                        {
-                            KorisnickoIme = txtKorisnickoIme.Text,
-                            Password = txtPassword.Text
-                        };
+                    var x = await _apiService.Authenticate(request);
 
-                        var x = await _apiService.Authenticate(request);
+                    if (x.UposlenikUloga.Any(s => s.Uloga.Naziv == "Administrator"))
+                    {
+                        MainForm frm = new MainForm(true);
+                        frm.Closed += (s, args) => this.Close();
+                        frm.Show();
 
-                        if (x.UposlenikUloga.Any(s => s.Uloga.Naziv == "Administrator"))
-                        {
-                            MainForm frm = new MainForm(true);
-                            frm.Closed += (s, args) => this.Close();
-                            frm.Show();
-
-                        }
-                        else
-                        {
-                            MainForm frm = new MainForm(false);
-                            frm.Closed += (s, args) => this.Close();
-                            frm.Show();
-
-                        }
-
-                        isClicked = true;
-                        this.Hide();
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message, "Autentifikacija", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MainForm frm = new MainForm(false);
+                        frm.Closed += (s, args) => this.Close();
+                        frm.Show();
+
                     }
 
+                    this.Hide();
                 }
+                catch (Exception ex)
+                {
+                    txtWait.Visible = false;
+                    MessageBox.Show(ex.Message, "Autentifikacija", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
+
+            btnLogin.Enabled = true;
+            txtWait.Visible = false;
+
         }
 
         private void txtKorisnickoIme_Validating(object sender, CancelEventArgs e)
