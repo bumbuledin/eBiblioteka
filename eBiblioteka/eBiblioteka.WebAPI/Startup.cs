@@ -35,8 +35,7 @@ namespace eBiblioteka.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<eBibliotekaContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("eBiblioteka")));
+           
 
             services.AddMvc(x => x.Filters.Add<ErrorFilter>());
             services.AddControllers();
@@ -64,6 +63,9 @@ namespace eBiblioteka.WebAPI
                     }
                 });
             });
+
+            services.AddDbContext<eBibliotekaContext>(options =>
+              options.UseSqlServer(Configuration.GetConnectionString("Biblioteka")));
 
             services.AddAutoMapper(typeof(Startup));
 
