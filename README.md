@@ -10,6 +10,8 @@
 
 - docker-compose up
 
+ 4. After docker is complete, open in browser: http://localhost:36195/swagger
+
 
 ## Login credentials:
 **Desktop**<br/>
@@ -40,8 +42,10 @@ Password: test
 ## Mobile screenshot
 
 <kbd>![ss4](https://user-images.githubusercontent.com/86159204/122803385-d3944800-d2c6-11eb-8dc0-c339c78b36a0.jpg)</kbd>
-<kbd>![ss2](https://user-images.githubusercontent.com/86159204/122803105-7d270980-d2c6-11eb-85df-6c9eb0e09d91.jpg)</kbd>
+<kbd>![ss2](https://user-images.githubusercontent.com/86159204/122803105-7d270980-d2c6-11eb-85df-6c9eb0e09d91.jpg)</kbd><br/>
+<br/>
 <kbd>![ss3](https://user-images.githubusercontent.com/86159204/122803290-b52e4c80-d2c6-11eb-9864-67a270f40cba.jpg)</kbd>
+<kbd>![ss1](https://user-images.githubusercontent.com/86159204/122829823-c50a5880-d2e7-11eb-992e-58af444d6318.jpg)</kbd>
 
 <br/> <br/>
 
